@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import FormularioTarea from './Components/FormularioTarea';
+import Header from './Components/Header';
 
 function App() {
+
+  const [tareas, settareas] = useState(
+    [
+      {
+        id: Math.floor(Math.random() * 1000),
+        texto: "caminar",
+        completada: false
+      },
+      {
+        id: Math.floor(Math.random() * 1000),
+        texto: "buscar",
+        completada: false
+      }
+    ]
+  );
+
+  console.log(tareas);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="contenedor">
+      <Header />
+      <FormularioTarea tareas={tareas} settareas={settareas} />
     </div>
   );
 }
