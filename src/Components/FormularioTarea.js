@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { AiFillPlusCircle } from "react-icons/ai";
+import { v4 as uuidv4 } from 'uuid';
 
 const FormularioTarea = ({ tareas, settareas }) => {
 
@@ -10,17 +11,20 @@ const FormularioTarea = ({ tareas, settareas }) => {
   }  
 
   const handlerSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault();  
     settareas(
         [
             ...tareas,
             {
-                id: Math.floor(Math.random() * 1000),
+                id: uuidv4(),
                 texto: input,
                 completada: false
             }
-        ]  
+        ],
     );
+        
+    setinput("");
+  
   };
 
 

@@ -2,30 +2,35 @@ import React, {useState} from 'react';
 import './App.css';
 import FormularioTarea from './Components/FormularioTarea';
 import Header from './Components/Header';
+import ListaTareas from './Components/ListaTareas';
 
 function App() {
 
   const [tareas, settareas] = useState(
     [
       {
-        id: Math.floor(Math.random() * 1000),
-        texto: "caminar",
+        id:1,
+        texto: "hola",
         completada: false
       },
       {
-        id: Math.floor(Math.random() * 1000),
-        texto: "buscar",
-        completada: false
+        id:2,
+        texto: "mundo",
+        completada: true
       }
     ]
   );
 
-  console.log(tareas);
+
+  const [completadas, setcompletadas] = useState(false);
+
+  /*console.log(tareas);*/
 
   return (
     <div className="contenedor">
-      <Header />
+      <Header completadas={completadas} setcompletadas={setcompletadas} />
       <FormularioTarea tareas={tareas} settareas={settareas} />
+      <ListaTareas tareas={tareas} settareas={settareas} completadas ={completadas} />
     </div>
   );
 }
