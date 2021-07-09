@@ -10,14 +10,14 @@ const Header = ({completadas, setcompletadas}) => {
   return (
     <div className="header">
       <h1 className="header__titulo">Lista de tareas</h1>
-      {setcompletadas  ?
+      {completadas  ?
 
       <button className="header__boton"
       onClick={() => toggleCompletadas()}
         
       >
          No mostrar completadas
-        <AiFillEyeInvisible className="header__icono-boton" className="ms-2 mt-1"/>
+        <AiFillEyeInvisible className="header__icono-boton" className="ms-2 mt-1" />
       </button>
       :
       <button className="header__boton"

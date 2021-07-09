@@ -1,30 +1,33 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import FormularioTarea from './Components/FormularioTarea';
 import Header from './Components/Header';
 import ListaTareas from './Components/ListaTareas';
 
 function App() {
-
-  const [tareas, settareas] = useState(
-    [
-      {
-        id:1,
-        texto: "hola",
-        completada: false
-      },
-      {
-        id:2,
-        texto: "mundo",
-        completada: true
-      }
-    ]
-  );
+  const tareasGuardadas = localStorage.getItem("tareas") ? 
+  JSON.parse(localStorage.getItem("tareas")) : [];
 
 
-  const [completadas, setcompletadas] = useState(false);
+  const [tareas, settareas] = useState(tareasGuardadas);
 
-  /*console.log(tareas);*/
+  /*localStorage configuracion*/
+  useEffect(()=>{
+    localStorage.setItem("tareas", JSON.stringify(tareas));
+  },[tareas]);
+
+  let configMostrarCompletadas = "";
+  if(localStorage.getItem("mostrarCompletadas" === null)){
+    configMostrarCompletadas = true;
+  } else {
+    configMostrarCompletadas = localStorage.getItem("mostrarCompletadas") === "true";
+  }
+
+  const [completadas, setcompletadas] = useState(configMostrarCompletadas);
+
+  useEffect(()=>{
+    localStorage.setItem("mostrarCompletadas", setcompletadas.toString());
+  },[setcompletadas]);;
 
   return (
     <div className="contenedor">
